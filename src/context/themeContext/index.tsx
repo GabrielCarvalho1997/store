@@ -19,12 +19,9 @@ type Props = {
   children: ReactNode;
 };
 
-const ThemeContext = createContext({} as IThemeContextData);
+const ThemeContextType = createContext({} as IThemeContextData);
 
 // Custom Hook
-export const useAppThemeContext = () => {
-  return useContext(ThemeContext);
-};
 
 export const AppThemeProvider = ({ children }: Props) => {
   const [themeName, setThemeName] = useState<'light' | 'dark'>('light');
@@ -41,7 +38,7 @@ export const AppThemeProvider = ({ children }: Props) => {
   }, [themeName]);
 
   return (
-    <ThemeContext.Provider value={{ themeName, toggleTheme }}>
+    <ThemeContextType.Provider value={{ themeName, toggleTheme }}>
       <ThemeProvider theme={theme}>
         <Box
           width="100vw"
@@ -51,6 +48,7 @@ export const AppThemeProvider = ({ children }: Props) => {
           {children}
         </Box>
       </ThemeProvider>
-    </ThemeContext.Provider>
+    </ThemeContextType.Provider>
   );
 };
+export const useAppThemeContext = () => useContext(ThemeContextType);

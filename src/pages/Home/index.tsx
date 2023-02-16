@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { Box, Grid, Paper, styled, Button } from '@mui/material';
 import { MenuItem } from '@mui/material';
 import { Produto } from 'types/produtos';
-import { useAppThemeContext } from 'context/ThemeContext';
+import { useAppThemeContext } from 'context/themeContext';
 
 const Home = () => {
   const [produtos, setProdutos] = useState<Produto[]>();
