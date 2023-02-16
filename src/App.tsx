@@ -1,13 +1,16 @@
 import Home from './pages/Home/index';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@emotion/react';
+import { FirstTheme } from 'theme';
+import AppRoutes from 'routes';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Home />
-      </div>
-    </BrowserRouter>
+    <ThemeProvider theme={FirstTheme}>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
