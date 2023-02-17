@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState, useCallback } from 'react';
 
-import { Box, Grid, Paper, styled, Button } from '@mui/material';
-import { MenuItem } from '@mui/material';
+import { Button } from '@mui/material';
 import { Produto } from 'types/produtos';
 import { useAppThemeContext } from 'context/themeContext';
 
@@ -27,9 +26,11 @@ const Home = () => {
   }, [getProdutos]);
 
   return (
-    <Button variant="contained" color="primary" onClick={toggleTheme}>
-      Toggle theme
-    </Button>
+    <>
+      <Button variant="contained" color="primary" onClick={toggleTheme}>
+        Toggle theme
+      </Button>
+    </>
   );
 };
 
