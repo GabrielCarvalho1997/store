@@ -20,4 +20,15 @@ export const LightTheme = createTheme({
       default: '#94B2D6',
     },
   },
+  components: {
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: yellow[700],
+          borderRadius: 0,
+          boxShadow: '1px 3px 2px grey',
+        },
+      },
+    },
+  },
 });

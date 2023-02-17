@@ -1,14 +1,22 @@
 import axios from 'axios';
 import { useEffect, useState, useCallback } from 'react';
 
-import { Button } from '@mui/material';
+import { Button, IconButton, useTheme } from '@mui/material';
 import { Produto } from 'types/produtos';
-import { useAppThemeContext } from 'context/themeContext';
+import { useAppThemeContext } from 'context/themeContext/ThemeContext';
+import { useDrawerContext } from 'context/drawerContext/DrawerContext';
+import DehazeIcon from '@mui/icons-material/Dehaze';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Home = () => {
   const [produtos, setProdutos] = useState<Produto[]>();
 
+  const { toggleDrawerOpen } = useDrawerContext();
   const { toggleTheme } = useAppThemeContext();
+
+  const theme = useTheme();
+
+  const md = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     console.log(produtos);
@@ -27,6 +35,16 @@ const Home = () => {
 
   return (
     <>
+      {md && (
+        <IconButton
+          // color="primary"
+          onClick={toggleDrawerOpen}
+          sx={{}}
+        >
+          <DehazeIcon sx={{ fontSize: 20 }} />
+        </IconButton>
+      )}
+
       <Button variant="contained" color="primary" onClick={toggleTheme}>
         Toggle theme
       </Button>
