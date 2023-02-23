@@ -9,12 +9,18 @@ interface IBarraDeFerramentasProps {
   textoDaBusca?: string;
   mostrarInputBusca?: boolean;
   mudarTextoDaBusca?: (novoTexto: string) => void;
+  textoBotaoNovo?: string;
+  mostrarBotaoNovo?: boolean;
+  clicarEmNovo?: () => void;
 }
 
 export const BarraDeFerramentas = ({
   textoDaBusca = '',
   mostrarInputBusca = false,
   mudarTextoDaBusca,
+  textoBotaoNovo = 'Novo',
+  mostrarBotaoNovo = true,
+  clicarEmNovo,
 }: IBarraDeFerramentasProps) => {
   const theme = useTheme();
 
@@ -39,14 +45,17 @@ export const BarraDeFerramentas = ({
         />
       )}
       <Box display="flex" flex={1} justifyContent="end">
-        <Button
-          variant="contained"
-          color="primary"
-          disableElevation
-          endIcon={<Icon>search</Icon>}
-        >
-          Buscar
-        </Button>
+        {mostrarBotaoNovo && (
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            onClick={clicarEmNovo}
+            endIcon={<Icon>search</Icon>}
+          >
+            {textoBotaoNovo}
+          </Button>
+        )}
       </Box>
     </Box>
   );
