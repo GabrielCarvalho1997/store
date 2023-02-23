@@ -6,6 +6,7 @@ import { Dashboard } from 'pages/dashboard/Dashboard';
 
 const Home = () => {
   const [produtos, setProdutos] = useState<Produto[]>();
+  const [loading, setLoading] = useState(false);
 
   const { setDrawerOptions } = useDrawerContext();
 
@@ -13,16 +14,18 @@ const Home = () => {
   //   console.log(produtos);
   // }, [produtos]);
 
-  // const getProdutos = useCallback(() => {
-  //   axios
-  //     .get('https://fakestoreapi.com/products')
-  //     .then((res) => setProdutos(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  const getProdutos = useCallback(() => {
+    setLoading(true);
+    axios
+      .get('https://fakestoreapi.com/products')
+      .then((res) => setProdutos(res.data))
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  }, []);
 
-  // useEffect(() => {
-  //   getProdutos();
-  // }, [getProdutos]);
+  useEffect(() => {
+    getProdutos();
+  }, [getProdutos]);
 
   // Usado para criar opções de menu nova
   useEffect(() => {
@@ -40,11 +43,7 @@ const Home = () => {
     ]);
   }, []);
 
-  return (
-    <>
-      <Dashboard />
-    </>
-  );
+  return <>{loading ? 'carregando...' : <Dashboard />}</>;
 };
 
 export default Home;

@@ -11,6 +11,7 @@ function App() {
         <BrowserRouter>
           <MenuLateral>
             <AppRoutes />
+            {/* componente do backdrop */}
           </MenuLateral>
         </BrowserRouter>
       </DrawerProvider>
