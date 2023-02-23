@@ -14,6 +14,7 @@ import { Box } from '@mui/system';
 import Icon from '@mui/material/Icon';
 import { useDrawerContext } from 'context/drawerContext/DrawerContext';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
+import { BtnTheme } from 'components/btnTema/BtnTheme';
 
 type Props = {
   children: ReactNode;
@@ -70,17 +71,24 @@ export const MenuLateral = ({ children }: Props) => {
         >
           <Box
             width="100%"
-            height={theme.spacing(20)}
             display="flex"
             alignItems="center"
             justifyContent="center"
+            flexDirection="column"
           >
-            <Avatar
-              alt="FakeStore"
-              src="#"
-              sx={{ height: theme.spacing(12), width: theme.spacing(12) }}
-            />
+            <Box sx={{ padding: '10px' }}>
+              <Avatar
+                alt="FakeStore"
+                src="#"
+                sx={{ height: theme.spacing(12), width: theme.spacing(12) }}
+              />
+            </Box>
+            <Box sx={{ margin: '10px' }}>
+              {/* TROCAR O BOTÃO */}
+              <BtnTheme />
+            </Box>
           </Box>
+
           <Divider />
 
           <Box flex={1}>
