@@ -7,6 +7,7 @@ import { useAppThemeContext } from 'context/themeContext/ThemeContext';
 import { useDrawerContext } from 'context/drawerContext/DrawerContext';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { Dashboard } from 'pages/dashboard/Dashboard';
 
 const Home = () => {
   const [produtos, setProdutos] = useState<Produto[]>();
@@ -64,6 +65,7 @@ const Home = () => {
       <Button variant="contained" color="primary" onClick={toggleTheme}>
         Toggle theme
       </Button>
+      <Dashboard />
     </>
   );
 };
