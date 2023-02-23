@@ -80,10 +80,10 @@ export const MenuLateral = ({ children }: Props) => {
               <Avatar
                 alt="FakeStore"
                 src="#"
-                sx={{ height: theme.spacing(12), width: theme.spacing(12) }}
+                sx={{ height: theme.spacing(16), width: theme.spacing(16) }}
               />
             </Box>
-            <Box sx={{ margin: '10px' }}>
+            <Box margin="10px" display="flex" flexDirection="column">
               {/* TROCAR O BOTÃO */}
               <BtnTheme />
             </Box>
