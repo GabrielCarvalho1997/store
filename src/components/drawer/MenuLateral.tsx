@@ -12,18 +12,48 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import Icon from '@mui/material/Icon';
-import DensitySmallIcon from '@mui/icons-material/DensitySmall';
 import { useDrawerContext } from 'context/drawerContext/DrawerContext';
+import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 
 type Props = {
   children: ReactNode;
+};
+
+// Componente de opções do menu lateral
+interface IListItemLink {
+  to: string;
+  icon: string;
+  label: string;
+  onClick: (() => void) | undefined;
+}
+
+const ListItemLink = ({ to, icon, label, onClick }: IListItemLink) => {
+  const navigate = useNavigate();
+
+  // reconhece se alguma opção do menu está selecionada
+  const resolvedPath = useResolvedPath(to);
+  const match = useMatch({ path: resolvedPath.pathname, end: false });
+
+  const handleClick = () => {
+    navigate(to);
+    onClick?.();
+  };
+
+  return (
+    <ListItemButton selected={!!match} onClick={handleClick}>
+      <ListItemIcon>
+        <Icon>{icon}</Icon>
+      </ListItemIcon>
+      <ListItemText primary={label} />
+    </ListItemButton>
+  );
 };
 
 export const MenuLateral = ({ children }: Props) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const { isDrawerOpen, toggleDrawerOpen } = useDrawerContext();
+  const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
 
   return (
     <>
@@ -56,18 +86,15 @@ export const MenuLateral = ({ children }: Props) => {
           <Box flex={1}>
             {/* Falta implementar as rotas e adicionar mais opções */}
             <List component="nav">
-              <ListItemButton>
-                <ListItemIcon>
-                  <Icon>home</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Página Inicial" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemIcon>
-                  <DensitySmallIcon />
-                </ListItemIcon>
-                <ListItemText primary="Categorias" />
-              </ListItemButton>
+              {drawerOptions.map((drawerOptions) => (
+                <ListItemLink
+                  key={drawerOptions.path}
+                  icon={drawerOptions.icon}
+                  label={drawerOptions.label}
+                  to={drawerOptions.path}
+                  onClick={smDown ? toggleDrawerOpen : undefined}
+                />
+              ))}
             </List>
           </Box>
         </Box>

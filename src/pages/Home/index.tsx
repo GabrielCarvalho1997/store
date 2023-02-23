@@ -11,7 +11,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 const Home = () => {
   const [produtos, setProdutos] = useState<Produto[]>();
 
-  const { toggleDrawerOpen } = useDrawerContext();
+  const { toggleDrawerOpen, setDrawerOptions } = useDrawerContext();
   const { toggleTheme } = useAppThemeContext();
 
   const theme = useTheme();
@@ -32,6 +32,22 @@ const Home = () => {
   useEffect(() => {
     getProdutos();
   }, [getProdutos]);
+
+  // Usado para criar opções de menu nova
+  useEffect(() => {
+    setDrawerOptions([
+      {
+        label: 'Página inicial',
+        icon: 'home',
+        path: '/home',
+      },
+      {
+        label: 'Categorias',
+        icon: 'menu',
+        path: '/categorias',
+      },
+    ]);
+  }, []);
 
   return (
     <>
