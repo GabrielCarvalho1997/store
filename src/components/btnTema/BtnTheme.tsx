@@ -1,4 +1,5 @@
 import { Button, Switch, FormControlLabel, styled } from '@mui/material';
+import { display } from '@mui/system';
 import { useAppThemeContext } from 'context/themeContext/ThemeContext';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
