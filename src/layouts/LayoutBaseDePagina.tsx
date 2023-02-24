@@ -7,13 +7,13 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 type Props = {
   children: ReactNode;
   titulo: string;
-  barraDeFerramentas: ReactNode;
+  barraDePesquisa: ReactNode;
 };
 
 export const LayoutBaseDePagina = ({
   children,
   titulo,
-  barraDeFerramentas,
+  barraDePesquisa,
 }: Props) => {
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -46,7 +46,7 @@ export const LayoutBaseDePagina = ({
         </Typography>
       </Box>
 
-      {barraDeFerramentas && <Box>{barraDeFerramentas}</Box>}
+      {barraDePesquisa && <Box>{barraDePesquisa}</Box>}
 
       <Box flex={1} overflow="auto">
         {children}

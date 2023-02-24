@@ -6,13 +6,13 @@ import { Dashboard } from 'pages/dashboard/Dashboard';
 
 const Home = () => {
   const [produtos, setProdutos] = useState<Produto[]>();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const { setDrawerOptions } = useDrawerContext();
 
-  // useEffect(() => {
-  //   console.log(produtos);
-  // }, [produtos]);
+  useEffect(() => {
+    console.log(produtos);
+  }, [produtos]);
 
   const getProdutos = useCallback(() => {
     setLoading(true);
@@ -43,7 +43,11 @@ const Home = () => {
     ]);
   }, []);
 
-  return <>{loading ? 'carregando...' : <Dashboard />}</>;
+  return (
+    <>
+      <Dashboard loading={loading} />
+    </>
+  );
 };
 
 export default Home;

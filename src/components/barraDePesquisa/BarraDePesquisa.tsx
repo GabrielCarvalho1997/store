@@ -5,7 +5,7 @@ type Props = {
   children: ReactNode;
 };
 
-interface IBarraDeFerramentasProps {
+interface IBarraDePesquisaProps {
   textoDaBusca?: string;
   mostrarInputBusca?: boolean;
   mudarTextoDaBusca?: (novoTexto: string) => void;
@@ -14,14 +14,14 @@ interface IBarraDeFerramentasProps {
   clicarEmNovo?: () => void;
 }
 
-export const BarraDeFerramentas = ({
+export const BarraDePesquisa = ({
   textoDaBusca = '',
   mostrarInputBusca = false,
   mudarTextoDaBusca,
   textoBotaoNovo = 'Novo',
   mostrarBotaoNovo = true,
   clicarEmNovo,
-}: IBarraDeFerramentasProps) => {
+}: IBarraDePesquisaProps) => {
   const theme = useTheme();
 
   return (
