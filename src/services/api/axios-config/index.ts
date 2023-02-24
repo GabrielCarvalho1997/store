@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { BASE_URL } from 'utils/constants';
 import { responseInterceptor, errorInterceptor } from './interceptors';
 

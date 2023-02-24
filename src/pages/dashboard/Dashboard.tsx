@@ -20,11 +20,12 @@ export const Dashboard = ({ loading }: Props) => {
           alignItems="center"
           justifyContent="center"
           height={'100%'}
+          margin={2}
         >
           <Skeleton
             height="100%"
             width="100%"
-            variant="rectangular"
+            variant="rounded"
             animation="wave"
           />
         </Box>

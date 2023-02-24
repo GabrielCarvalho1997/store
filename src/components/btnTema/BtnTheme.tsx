@@ -36,7 +36,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       backgroundColor: theme.palette.primary.main,
       borderRadius: '50%',
 
-      content: "''",
+      content: '\'\'',
       position: 'absolute',
       width: '100%',
       height: '100%',
