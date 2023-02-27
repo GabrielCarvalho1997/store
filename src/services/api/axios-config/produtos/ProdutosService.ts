@@ -27,11 +27,7 @@ import { API } from '..';
 //   };
 // }
 
-type TProdutosTotalCount = {
-  data: Produto[];
-};
-
-const getAll = async (filter = ''): Promise<TProdutosTotalCount | Error> => {
+const getAll = async (filter = ''): Promise<Produto[] | Error> => {
   try {
     const urlRelativa = `/products?limit=12&title_like=${filter}`;
     const { data } = await API.get(urlRelativa);

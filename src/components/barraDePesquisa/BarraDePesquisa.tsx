@@ -1,26 +1,27 @@
-import { ReactNode } from 'react';
+// import { ReactNode } from 'react';
 import { Box, TextField, Button, Paper, useTheme, Icon } from '@mui/material';
 
-type Props = {
-  children: ReactNode;
-};
+// type Props = {
+//   children: ReactNode;
+// };
 
-interface IBarraDePesquisaProps {
+type IBarraDePesquisaProps = {
+  texto: string;
+  setTexto: (texto: string) => void;
   textoDaBusca?: string;
   mostrarInputBusca?: boolean;
-  mudarTextoDaBusca?: (novoTexto: string) => void;
   textoBotaoNovo?: string;
   mostrarBotaoNovo?: boolean;
   clicarEmNovo?: () => void;
-}
+};
 
 export const BarraDePesquisa = ({
-  textoDaBusca = '',
   mostrarInputBusca = false,
-  mudarTextoDaBusca,
   textoBotaoNovo = 'Novo',
   mostrarBotaoNovo = true,
   clicarEmNovo,
+  texto,
+  setTexto,
 }: IBarraDePesquisaProps) => {
   const theme = useTheme();
 
@@ -38,10 +39,12 @@ export const BarraDePesquisa = ({
       {mostrarInputBusca && (
         <TextField
           size="small"
-          placeholder="Pesquisar..."
+          value={texto}
+          placeholder="Pesquisar... LEMBRAR DE USAR O USEDEBOUNCE AQUI"
           fullWidth
-          value={textoDaBusca}
-          onChange={(e) => mudarTextoDaBusca?.(e.target.value)}
+          onChange={(e) => {
+            setTexto(e.target.value);
+          }}
         />
       )}
       <Box display="flex" flex={1} justifyContent="end">
