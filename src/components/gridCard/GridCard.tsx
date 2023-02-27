@@ -5,27 +5,63 @@ import {
   CardMedia,
   Grid,
   Typography,
+  Box,
+  Icon,
 } from '@mui/material';
+import { Produto } from 'types/produtos';
 
-export const GridCard = () => {
+export const GridCard = ({
+  category,
+  description,
+  id,
+  image,
+  price,
+  rating,
+  title,
+}: Produto) => {
   return (
     <Grid item xs={4}>
-      <Card sx={{ maxWidth: '100%' }}>
+      <Card>
         <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-            alt="green iguana"
-          />
+          <Box sx={{ padding: 2 }}>
+            <CardMedia
+              component="img"
+              height={250}
+              image={image}
+              alt={title}
+              style={{ objectFit: 'contain' }}
+            />
+          </Box>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
+            <Typography
+              component="p"
+              fontWeight={800}
+              maxWidth={300}
+              style={{
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              {title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+
+            <Typography marginY={1}>
+              {price.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
             </Typography>
+            <Box display="flex" alignItems="center">
+              <Box display="flex" marginRight={1} marginY={0.5}>
+                <Icon color="primary">star</Icon>
+                <Typography>{rating?.rate}</Typography>
+              </Box>
+              <Box display="flex" marginRight={1} marginY={0.5}>
+                <Icon color="primary">people</Icon>
+                <Typography>{rating?.count}</Typography>
+              </Box>
+            </Box>
           </CardContent>
         </CardActionArea>
       </Card>

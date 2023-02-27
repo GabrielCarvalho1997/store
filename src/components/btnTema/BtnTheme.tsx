@@ -63,33 +63,6 @@ export const BtnTheme = () => {
     <>
       {/* Botão para trocar o tema da página */}
       <MaterialUISwitch onChange={toggleTheme} />
-
-      {/* Botão para trocar o tema da página
-      <Button
-        variant="outlined"
-        color="primary"
-        size="small"
-        sx={{
-          fontSize: 10,
-          paddingX: 2,
-          lineHeight: 1.5,
-          borderRadius: 2,
-        }}
-        onClick={toggleTheme}
-      >
-        Toggle theme
-      </Button>
-
-      <FormControlLabel
-        control={
-          <Switch
-            onChange={toggleTheme}
-            color="primary"
-            inputProps={{ 'aria-label': 'Toggle theme' }}
-          />
-        }
-        label="Toggle Theme"
-      /> */}
     </>
   );
 };
