@@ -1,5 +1,6 @@
-import { Box, Paper, TextField, useTheme, Button } from '@mui/material';
+import { Box, TextField, useTheme, Button, Card } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import InputMask from 'react-input-mask';
 
 type FormState = {
   title: string;
@@ -8,6 +9,7 @@ type FormState = {
   image: string;
   price: number;
 };
+
 export const EditForm = () => {
   const theme = useTheme();
   const {
@@ -18,31 +20,31 @@ export const EditForm = () => {
   } = useForm<FormState>();
 
   return (
-    <Box component={Paper} height={500} padding={2} margin={2}>
+    <Box component={Card} padding={2} margin={2} height={520}>
       <Box component="form" height={theme.spacing(5)}>
         <TextField
           label={'Título'}
           fullWidth
-          sx={{ mb: 2 }}
+          sx={{ my: 2 }}
           InputLabelProps={{ shrink: true }}
         />
         <TextField
           label={'Categoria'}
           fullWidth
-          sx={{ mb: 2 }}
+          sx={{ my: 2 }}
           InputLabelProps={{ shrink: true }}
         />
         <TextField
           label={'Descrição'}
           fullWidth
-          sx={{ mb: 2 }}
+          sx={{ my: 2 }}
           InputLabelProps={{ shrink: true }}
         />
 
         <TextField
           label={'URL da imagem'}
           fullWidth
-          sx={{ mb: 2 }}
+          sx={{ my: 2 }}
           InputLabelProps={{ shrink: true }}
         />
 
@@ -50,7 +52,7 @@ export const EditForm = () => {
           label={'Preço ( R$ )'}
           type="number"
           fullWidth
-          sx={{ mb: 2 }}
+          sx={{ my: 2 }}
           InputLabelProps={{ shrink: true }}
         />
         <Button
