@@ -7,13 +7,22 @@ import {
   Typography,
   Box,
   Icon,
+  Button,
+  Stack,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { Produto } from 'types/produtos';
 type Props = {
   produto: Produto;
 };
 
 export const GridCard = ({ produto }: Props) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/produtos/${produto.id}`);
+  };
+
   return (
     <Grid item xs={12} sm={12} md={4} xl={3}>
       <Card>
@@ -58,8 +67,20 @@ export const GridCard = ({ produto }: Props) => {
               </Box>
             </Box>
           </CardContent>
-          {/* COLOCAR OS BOTÕES */}
         </CardActionArea>
+        {/* Botões do card */}
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="space-between"
+          marginX={5}
+          marginY={2}
+        >
+          <Button variant="contained" onClick={handleClick}>
+            Editar
+          </Button>
+          <Button variant="contained">Excluir</Button>
+        </Stack>
       </Card>
     </Grid>
   );

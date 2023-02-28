@@ -4,6 +4,7 @@ import { ReactNode, useState } from 'react';
 import { Typography, useTheme } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { BarraDePesquisa } from 'components';
+import { useMatch } from 'react-router-dom';
 
 type Props = {
   children?: ReactNode;
@@ -16,6 +17,8 @@ export const LayoutBaseDePagina = ({ children, titulo }: Props) => {
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
   const md = useMediaQuery(theme.breakpoints.down('md'));
+
+  const match = useMatch({ path: 'produtos/:id', end: false });
 
   return (
     <Box height="100%" display="flex" flexDirection="column" gap={1}>
@@ -41,14 +44,16 @@ export const LayoutBaseDePagina = ({ children, titulo }: Props) => {
           {titulo}
         </Typography>
       </Box>
-      <Box marginBottom={4}>
-        <BarraDePesquisa
-          mostrarInputBusca
-          textoBotaoNovo="Pesquisar"
-          texto={texto}
-          setTexto={setTexto}
-        />
-      </Box>
+      {!match && (
+        <Box marginBottom={4}>
+          <BarraDePesquisa
+            mostrarInputBusca
+            textoBotaoNovo="Pesquisar"
+            texto={texto}
+            setTexto={setTexto}
+          />
+        </Box>
+      )}
 
       <Box flex={1} overflow="auto">
         {children}
