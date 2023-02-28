@@ -9,26 +9,21 @@ import {
   Icon,
 } from '@mui/material';
 import { Produto } from 'types/produtos';
+type Props = {
+  produto: Produto;
+};
 
-export const GridCard = ({
-  category,
-  description,
-  id,
-  image,
-  price,
-  rating,
-  title,
-}: Produto) => {
+export const GridCard = ({ produto }: Props) => {
   return (
-    <Grid item xs={4}>
+    <Grid item xs={12} sm={12} md={4} xl={3}>
       <Card>
         <CardActionArea>
           <Box sx={{ padding: 2 }}>
             <CardMedia
               component="img"
               height={250}
-              image={image}
-              alt={title}
+              image={produto.image}
+              alt={produto.title}
               style={{ objectFit: 'contain' }}
             />
           </Box>
@@ -43,11 +38,11 @@ export const GridCard = ({
                 textOverflow: 'ellipsis',
               }}
             >
-              {title}
+              {produto.title}
             </Typography>
 
             <Typography marginY={1}>
-              {price.toLocaleString('pt-BR', {
+              {produto.price.toLocaleString('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
               })}
@@ -55,14 +50,15 @@ export const GridCard = ({
             <Box display="flex" alignItems="center">
               <Box display="flex" marginRight={1} marginY={0.5}>
                 <Icon color="primary">star</Icon>
-                <Typography>{rating?.rate}</Typography>
+                <Typography>{produto.rating?.rate}</Typography>
               </Box>
               <Box display="flex" marginRight={1} marginY={0.5}>
                 <Icon color="primary">people</Icon>
-                <Typography>{rating?.count}</Typography>
+                <Typography>{produto.rating?.count}</Typography>
               </Box>
             </Box>
           </CardContent>
+          {/* COLOCAR OS BOTÕES */}
         </CardActionArea>
       </Card>
     </Grid>

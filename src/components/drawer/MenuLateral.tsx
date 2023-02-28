@@ -94,15 +94,16 @@ export const MenuLateral = ({ children }: Props) => {
           <Box flex={1}>
             {/* Falta implementar as rotas e adicionar mais opções */}
             <List component="nav">
-              {drawerOptions.map((drawerOptions) => (
-                <ListItemLink
-                  key={drawerOptions.path}
-                  icon={drawerOptions.icon}
-                  label={drawerOptions.label}
-                  to={drawerOptions.path}
-                  onClick={smDown ? toggleDrawerOpen : undefined}
-                />
-              ))}
+              {drawerOptions &&
+                drawerOptions.map((drawerOptions) => (
+                  <ListItemLink
+                    key={drawerOptions.path}
+                    icon={drawerOptions.icon}
+                    label={drawerOptions.label}
+                    to={drawerOptions.path}
+                    onClick={smDown ? toggleDrawerOpen : undefined}
+                  />
+                ))}
             </List>
           </Box>
         </Box>

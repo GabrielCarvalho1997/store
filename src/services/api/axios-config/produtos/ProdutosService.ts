@@ -1,32 +1,6 @@
 import { Produto } from 'types/produtos';
 import { API } from '..';
 
-// interface IListagemProdutos {
-//   id: number;
-//   title: string;
-//   price: number;
-//   description: string;
-//   category: string;
-//   image: string;
-//   rating?: {
-//     rate: number;
-//     count: number;
-//   };
-// }
-
-// interface IDetalheProdutos {
-//   id: number;
-//   title: string;
-//   price: number;
-//   description: string;
-//   category: string;
-//   image: string;
-//   rating?: {
-//     rate: number;
-//     count: number;
-//   };
-// }
-
 const getAll = async (filter = ''): Promise<Produto[] | Error> => {
   try {
     const urlRelativa = `/products?limit=12&title_like=${filter}`;
@@ -42,6 +16,24 @@ const getAll = async (filter = ''): Promise<Produto[] | Error> => {
     console.error(error);
     return new Error(
       (error as { message: string }).message || 'Erro ao listar os produtos.'
+    );
+  }
+};
+
+const getAllCategories = async (): Promise<string[] | Error> => {
+  try {
+    const { data } = await API.get('products/categories');
+
+    if (data) {
+      return data;
+    }
+    // Erro de requisição
+    return new Error('Erro ao listar as categorias.');
+  } catch (error) {
+    // Erro na consulta da url
+    console.error(error);
+    return new Error(
+      (error as { message: string }).message || 'Erro ao listar as categorias.'
     );
   }
 };
@@ -114,29 +106,9 @@ const deleteById = async (id: number): Promise<void | Error> => {
 
 export const ProdutosService = {
   getAll,
+  getAllCategories,
   getById,
   create,
   updateById,
   deleteById,
 };
-
-// export const ProdutosService = {
-//   getAll: async (filter = '') => {
-//     try {
-//       const { data } = await API.get('/products', {
-//         params: {
-//           limit: 12,
-//           title_like: filter,
-//         },
-//       });
-
-//       return data;
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   },
-//   getById,
-//   create,
-//   updateById,
-//   deleteById,
-// };
