@@ -1,24 +1,23 @@
 import { Box } from '@mui/system';
 import { BtnMenuLateral } from 'components/btnMenuLateral/BtnMenuLateral';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import { Typography, useTheme } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { BarraDePesquisa } from 'components';
-import { useMatch } from 'react-router-dom';
 
 type Props = {
-  children?: ReactNode;
+  children: ReactNode;
   titulo: string;
+  barraDePesquisa: ReactNode;
 };
 
-export const LayoutBaseDePagina = ({ children, titulo }: Props) => {
-  const [texto, setTexto] = useState('');
-
+export const LayoutBaseDePagina = ({
+  children,
+  titulo,
+  barraDePesquisa,
+}: Props) => {
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
   const md = useMediaQuery(theme.breakpoints.down('md'));
-
-  const match = useMatch({ path: 'produtos/:id', end: false });
 
   return (
     <Box height="100%" display="flex" flexDirection="column" gap={1}>
@@ -34,6 +33,8 @@ export const LayoutBaseDePagina = ({ children, titulo }: Props) => {
         gap={1}
         height={theme.spacing(sm ? 6 : md ? 8 : 12)}
       >
+        <BtnMenuLateral />
+
         <Typography
           variant={sm ? 'h5' : md ? 'h4' : 'h3'}
           component="h1"
@@ -44,16 +45,8 @@ export const LayoutBaseDePagina = ({ children, titulo }: Props) => {
           {titulo}
         </Typography>
       </Box>
-      {!match && (
-        <Box marginBottom={4}>
-          <BarraDePesquisa
-            mostrarInputBusca
-            textoBotaoNovo="Pesquisar"
-            texto={texto}
-            setTexto={setTexto}
-          />
-        </Box>
-      )}
+
+      {barraDePesquisa && <Box>{barraDePesquisa}</Box>}
 
       <Box flex={1} overflow="auto">
         {children}
