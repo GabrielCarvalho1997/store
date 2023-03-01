@@ -11,7 +11,9 @@ import {
   Stack,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { ProdutosService } from 'services/api/axios-config/produtos/ProdutosService';
 import { Produto } from 'types/produtos';
+import { toast } from 'react-toastify';
 type Props = {
   produto: Produto;
 };
@@ -19,8 +21,24 @@ type Props = {
 export const GridCard = ({ produto }: Props) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleEdit = () => {
     navigate(`/produtos/${produto.id}`);
+  };
+
+  const { id } = produto;
+
+  // Exclui o produto porém não atualiza a lista pois é uma base de dados externa
+  const handleDelete = () => {
+    ProdutosService.deleteById(id).then((res) => {
+      if (res instanceof Error) {
+        alert(res.message);
+      } else {
+        console.log(res);
+        toast.success('Produto excluído com sucesso!');
+        // Gambiarra para atualizar a lista
+        navigate('/');
+      }
+    });
   };
 
   return (
@@ -76,10 +94,12 @@ export const GridCard = ({ produto }: Props) => {
           marginX={5}
           marginY={2}
         >
-          <Button variant="contained" onClick={handleClick}>
+          <Button variant="contained" onClick={handleEdit}>
             Editar
           </Button>
-          <Button variant="contained">Excluir</Button>
+          <Button variant="contained" onClick={handleDelete}>
+            Excluir
+          </Button>
         </Stack>
       </Card>
     </Grid>
