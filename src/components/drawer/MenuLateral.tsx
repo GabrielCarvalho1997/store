@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import {
   Avatar,
   Divider,
@@ -9,12 +9,17 @@ import {
   ListItemText,
   useMediaQuery,
   useTheme,
+  Collapse
 } from '@mui/material';
 import { Box } from '@mui/system';
 import Icon from '@mui/material/Icon';
+import {ExpandLess, ExpandMore } from '@mui/icons-material';
+import ListIcon from '@mui/icons-material/List';
+import HomeIcon from '@mui/icons-material/Home';
 import { useDrawerContext } from 'context/drawerContext/DrawerContext';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 import { BtnTheme } from 'components/btnTema/BtnTheme';
+
 
 type Props = {
   children: ReactNode;
@@ -53,8 +58,17 @@ const ListItemLink = ({ to, icon, label, onClick }: IListItemLink) => {
 export const MenuLateral = ({ children }: Props) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const navigate = useNavigate();
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
+
+  const [open, setOpen] = useState<boolean>(false);
+
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+
+  
 
   return (
     <>
@@ -92,19 +106,39 @@ export const MenuLateral = ({ children }: Props) => {
           <Divider />
 
           <Box flex={1}>
-            {/* Falta implementar as rotas e adicionar mais opções */}
-            <List component="nav">
-              {drawerOptions &&
-                drawerOptions.map((drawerOptions) => (
-                  <ListItemLink
-                    key={drawerOptions.path}
-                    icon={drawerOptions.icon}
-                    label={drawerOptions.label}
-                    to={drawerOptions.path}
-                    onClick={smDown ? toggleDrawerOpen : undefined}
-                  />
-                ))}
-            </List>
+
+            {/* Item de página inicial */}
+            <ListItemButton onClick= {() => navigate('/home')} >
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Página Inicial" />
+            </ListItemButton>
+            
+            {/* Item de categorias com as categorias dinâmicas */}
+            <ListItemButton onClick={handleToggle}>
+              <ListItemIcon>
+                <ListIcon />
+              </ListItemIcon>
+              <ListItemText primary="Categoria" />
+              {open ? <ExpandMore /> : <ExpandLess />}
+            </ListItemButton>
+            <Collapse in={open} timeout="auto" unmountOnExit sx={{background: '#DCDCDC', }}>
+              <List component="div" disablePadding>
+                { drawerOptions && drawerOptions.map((Options) => 
+                  (
+                    <ListItemLink
+                      key={Options.path}
+                      label={Options.label}
+                      icon={Options.icon}
+                      to={Options.path}
+                      onClick={smDown ? toggleDrawerOpen : undefined}
+                    />
+                    
+                  ))
+                }
+              </List>
+            </Collapse>
           </Box>
         </Box>
       </Drawer>

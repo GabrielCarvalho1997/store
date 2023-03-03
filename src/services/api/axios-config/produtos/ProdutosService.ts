@@ -1,9 +1,16 @@
 import { Produto } from 'types/produtos';
 import { API } from '..';
 
-const getAll = async (filter = ''): Promise<Produto[] | Error> => {
+const getAll = async (categoria = ''): Promise<Produto[] | Error> => {
   try {
-    const urlRelativa = `/products?limit=12&title_like=${filter}`;
+    let urlRelativa = '';
+
+    if (categoria) {
+      urlRelativa = `/products/category/${categoria}`;
+     
+    } else {
+      urlRelativa = '/products?limit=12';
+    }
     const { data } = await API.get(urlRelativa);
 
     if (data) {

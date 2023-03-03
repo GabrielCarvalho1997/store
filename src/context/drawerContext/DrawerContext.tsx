@@ -21,6 +21,7 @@ interface IDrawerOption {
   icon: string;
   label: string;
   path: string;
+  
 }
 
 type Props = {
@@ -34,11 +35,13 @@ const defaultMenu = [
     label: 'Página inicial',
     icon: 'home',
     path: '/home',
+    subMenu: false
   },
   {
     label: 'Categorias',
     icon: 'menu',
-    path: '/categorias',
+    path: '/',
+    subMenu: false
   },
 ];
 
@@ -47,25 +50,35 @@ export const DrawerProvider = ({ children }: Props) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [drawerOptions, setDrawerOptions] = useState<IDrawerOption[]>();
+  const [drawerOptions, setDrawerOptions] = useState<IDrawerOption[]>(defaultMenu);
+
 
   // Requisição das categorias
-
   const getCategorias = useCallback(() => {
     setLoading(true);
+  
     ProdutosService.getAllCategories()
       .then((res) => {
         if (res instanceof Error) {
           alert(res.message);
         } else {
-          const temp = res.map((categoria) => {
+          const icones = ['laptop','diamond','man','woman'];
+          
+          // Associa o ícone a cada categoria
+          const menuIcones: any = res.reduce((obj: any, category, index) => {
+            obj[category] = icones[index];
+            return obj;
+          }, {});
+
+          const subItens = res.map((categoria) => {       
             return {
               label: categoria,
-              icon: '',
-              path: `/categorias/${categoria}`,
+              icon: menuIcones[categoria],
+              path: `/categoria/${categoria}`,
+              subMenu: true
             };
           });
-          setDrawerOptions([...defaultMenu, ...temp]);
+          setDrawerOptions([...subItens]);
         }
       })
       .finally(() => setLoading(false));

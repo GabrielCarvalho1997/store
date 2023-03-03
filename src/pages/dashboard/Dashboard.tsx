@@ -6,32 +6,44 @@ import { useState, useCallback, useEffect } from 'react';
 import { Produto } from 'types/produtos';
 import { ProdutosService } from 'services/api/axios-config/produtos/ProdutosService';
 import AddIcon from '@mui/icons-material/Add';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const Dashboard = () => {
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  const params = useParams();
+
   // Navega até a página de adição
   const handleClick = () => {
     navigate('/adicao');
   };
 
-  // Busca todos os produtos
+  // Busca todos os produtos ou por categoria
   const getProdutos = useCallback(() => {
     setLoading(true);
-    ProdutosService.getAll()
-      .then((res) => {
-        if (res instanceof Error) {
-          alert(res.message);
-        } else {
-          setProdutos(res);
-          console.log(res);
-        }
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    if (params.categoria) { 
+      ProdutosService.getAll(params.categoria)
+        .then((res) => {
+          if (res instanceof Error) {
+            alert(res.message);
+          } else {
+            setProdutos(res);
+          }
+        }) .finally(() => setLoading(false));
+    } else {
+      ProdutosService.getAll()
+        .then((res) => {
+          if (res instanceof Error) {
+            alert(res.message);
+          } else {
+            setProdutos(res);
+          }
+        }) .finally(() => setLoading(false));    
+    }
+  
+  }, [params]);
 
   useEffect(() => {
     getProdutos();

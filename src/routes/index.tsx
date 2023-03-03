@@ -10,6 +10,10 @@ const AppRoutes = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/produtos/:id" element={<Edicao />} />
       <Route path="/adicao" element={<Adicao />} />
+      <Route path='/categoria'>
+        <Route index  element={ <Navigate to={'/home'}/>} />
+        <Route path=':categoria' element={<Home />} />
+      </Route>
     </Routes>
   );
 };
