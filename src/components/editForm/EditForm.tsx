@@ -138,7 +138,7 @@ export const EditForm = () => {
           <TextField
             label={'Preço ( R$ )'}
             type="text"
-            fullWidth
+            fullWidth 
             sx={{ my: 2 }}
             error={!!errors.price}
             helperText={errors.price?.message}

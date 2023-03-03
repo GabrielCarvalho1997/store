@@ -1,7 +1,7 @@
 import { Adicao } from 'pages/adicao/Adicao';
 import { Edicao } from 'pages/edicao/Edicao';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Home from '../pages/Home/Home';
+import Home from '../pages/home/Home';
 
 const AppRoutes = () => {
   return (

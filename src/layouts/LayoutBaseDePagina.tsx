@@ -19,6 +19,7 @@ export const LayoutBaseDePagina = ({ children, titulo }: Props) => {
   const md = useMediaQuery(theme.breakpoints.down('md'));
 
   const match = useMatch({ path: 'produtos/:id', end: false });
+  const match2 = useMatch({ path: 'adicao', end: true });
 
   return (
     <Box height="100%" display="flex" flexDirection="column" gap={1}>
@@ -44,7 +45,7 @@ export const LayoutBaseDePagina = ({ children, titulo }: Props) => {
           {titulo}
         </Typography>
       </Box>
-      {!match && (
+      {!match && !match2 && (
         <Box marginBottom={4}>
           <BarraDePesquisa
             mostrarInputBusca
