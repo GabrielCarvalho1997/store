@@ -1,5 +1,5 @@
 // import { ReactNode } from 'react';
-import { Box, TextField, Button, Paper, useTheme, Icon } from '@mui/material';
+import { Box, TextField, Button, Paper, useTheme, Icon } from "@mui/material";
 
 // type Props = {
 //   children: ReactNode;
@@ -17,7 +17,7 @@ type IBarraDePesquisaProps = {
 
 export const BarraDePesquisa = ({
   mostrarInputBusca = false,
-  textoBotaoNovo = 'Novo',
+  textoBotaoNovo = "Novo",
   mostrarBotaoNovo = true,
   clicarEmNovo,
   texto,

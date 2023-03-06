@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState } from "react";
 import {
   Avatar,
   Divider,
@@ -10,15 +10,15 @@ import {
   useMediaQuery,
   useTheme,
   Collapse
-} from '@mui/material';
-import { Box } from '@mui/system';
-import Icon from '@mui/material/Icon';
-import {ExpandLess, ExpandMore } from '@mui/icons-material';
-import ListIcon from '@mui/icons-material/List';
-import HomeIcon from '@mui/icons-material/Home';
-import { useDrawerContext } from 'context/drawerContext/DrawerContext';
-import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
-import { BtnTheme } from 'components/btnTema/BtnTheme';
+} from "@mui/material";
+import { Box } from "@mui/system";
+import Icon from "@mui/material/Icon";
+import {ExpandLess, ExpandMore } from "@mui/icons-material";
+import ListIcon from "@mui/icons-material/List";
+import HomeIcon from "@mui/icons-material/Home";
+import { useDrawerContext } from "context/drawerContext/DrawerContext";
+import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
+import { BtnTheme } from "components/btnTema/BtnTheme";
 
 
 type Props = {
@@ -57,7 +57,7 @@ const ListItemLink = ({ to, icon, label, onClick }: IListItemLink) => {
 
 export const MenuLateral = ({ children }: Props) => {
   const theme = useTheme();
-  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+  const smDown = useMediaQuery(theme.breakpoints.down("sm"));
   const navigate = useNavigate();
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
@@ -74,7 +74,7 @@ export const MenuLateral = ({ children }: Props) => {
     <>
       <Drawer
         open={isDrawerOpen}
-        variant={smDown ? 'temporary' : 'permanent'}
+        variant={smDown ? "temporary" : "permanent"}
         onClose={toggleDrawerOpen}
       >
         <Box
@@ -90,7 +90,7 @@ export const MenuLateral = ({ children }: Props) => {
             justifyContent="center"
             flexDirection="column"
           >
-            <Box sx={{ padding: '10px' }}>
+            <Box sx={{ padding: "10px" }}>
               <Avatar
                 alt="FakeStore"
                 src="#"
@@ -108,7 +108,7 @@ export const MenuLateral = ({ children }: Props) => {
           <Box flex={1}>
 
             {/* Item de página inicial */}
-            <ListItemButton onClick= {() => navigate('/home')} >
+            <ListItemButton onClick= {() => navigate("/home")} >
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
@@ -123,7 +123,7 @@ export const MenuLateral = ({ children }: Props) => {
               <ListItemText primary="Categoria" />
               {open ? <ExpandMore /> : <ExpandLess />}
             </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit sx={{background: '#DCDCDC', }}>
+            <Collapse in={open} timeout="auto" unmountOnExit sx={{background: "#DCDCDC", }}>
               <List component="div" disablePadding>
                 { drawerOptions && drawerOptions.map((Options) => 
                   (

@@ -1,11 +1,11 @@
-import DehazeIcon from '@mui/icons-material/Dehaze';
-import { IconButton, useTheme } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useDrawerContext } from 'context/drawerContext/DrawerContext';
+import DehazeIcon from "@mui/icons-material/Dehaze";
+import { IconButton, useTheme } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useDrawerContext } from "context/drawerContext/DrawerContext";
 
 export const BtnMenuLateral = () => {
   const theme = useTheme();
-  const sm = useMediaQuery(theme.breakpoints.down('sm'));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
   const { toggleDrawerOpen } = useDrawerContext();
 
   return (

@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosResponse } from "axios";
 
 // Usado pra interceptar e tratar todos os tipos de respostas
 export const responseInterceptor = (response: AxiosResponse) => {

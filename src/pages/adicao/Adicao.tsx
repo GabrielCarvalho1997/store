@@ -1,5 +1,5 @@
-import { AddForm } from 'components/addForm/AddForm';
-import { LayoutBaseDePagina } from 'layouts/LayoutBaseDePagina';
+import { AddForm } from "components/addForm/AddForm";
+import { LayoutBaseDePagina } from "layouts/LayoutBaseDePagina";
 
 export const Adicao = () => {
   return (

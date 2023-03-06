@@ -1,15 +1,14 @@
-import { Produto } from 'types/produtos';
-import { API } from '..';
+import { Produto } from "types/produtos";
+import { API } from "..";
 
-const getAll = async (categoria = ''): Promise<Produto[] | Error> => {
+const getAll = async (categoria = ""): Promise<Produto[] | Error> => {
   try {
-    let urlRelativa = '';
+    let urlRelativa = "";
 
     if (categoria) {
       urlRelativa = `/products/category/${categoria}`;
-     
     } else {
-      urlRelativa = '/products?limit=12';
+      urlRelativa = "/products?limit=12";
     }
     const { data } = await API.get(urlRelativa);
 
@@ -17,30 +16,30 @@ const getAll = async (categoria = ''): Promise<Produto[] | Error> => {
       return data;
     }
     // Erro de requisição
-    return new Error('Erro ao listar os produtos.');
+    return new Error("Erro ao listar os produtos.");
   } catch (error) {
     // Erro na consulta da url
     console.error(error);
     return new Error(
-      (error as { message: string }).message || 'Erro ao listar os produtos.'
+      (error as { message: string }).message || "Erro ao listar os produtos."
     );
   }
 };
 
 const getAllCategories = async (): Promise<string[] | Error> => {
   try {
-    const { data } = await API.get('products/categories');
+    const { data } = await API.get("products/categories");
 
     if (data) {
       return data;
     }
     // Erro de requisição
-    return new Error('Erro ao listar as categorias.');
+    return new Error("Erro ao listar as categorias.");
   } catch (error) {
     // Erro na consulta da url
     console.error(error);
     return new Error(
-      (error as { message: string }).message || 'Erro ao listar as categorias.'
+      (error as { message: string }).message || "Erro ao listar as categorias."
     );
   }
 };
@@ -53,32 +52,32 @@ const getById = async (id: number): Promise<Produto | Error> => {
       return data;
     }
     // Erro de requisição
-    return new Error('Erro ao consultar o produto.');
+    return new Error("Erro ao consultar o produto.");
   } catch (error) {
     // Erro na consulta da url
     console.error(error);
     return new Error(
-      (error as { message: string }).message || 'Erro ao consultar o produto.'
+      (error as { message: string }).message || "Erro ao consultar o produto."
     );
   }
 };
 
 // Omit - irá omitir o id no momento de criar um novo produto
 const create = async (
-  produto: Omit<Produto, 'id'>
+  produto: Omit<Produto, "id">
 ): Promise<number | Error> => {
   try {
-    const { data } = await API.post<Produto>('/products', produto);
+    const { data } = await API.post<Produto>("/products", produto);
 
     if (data) {
       return data.id;
     }
     // Erro de requisição
-    return new Error('Erro ao criar o produto.');
+    return new Error("Erro ao criar o produto.");
   } catch (error: any) {
     // Erro na consulta da url
     console.error(error);
-    return new Error(error.message || 'Erro ao criar o produto.');
+    return new Error(error.message || "Erro ao criar o produto.");
   }
 };
 
@@ -92,7 +91,7 @@ const updateById = async (
     // Erro na consulta da url
     console.error(error);
     return new Error(
-      (error as { message: string }).message || 'Erro ao atualizar o produto.'
+      (error as { message: string }).message || "Erro ao atualizar o produto."
     );
   }
 };
@@ -104,7 +103,7 @@ const deleteById = async (id: number): Promise<void | Error> => {
     // Erro na consulta da url
     console.error(error);
     return new Error(
-      (error as { message: string }).message || 'Erro ao apagar o produto.'
+      (error as { message: string }).message || "Erro ao apagar o produto."
     );
   }
 };

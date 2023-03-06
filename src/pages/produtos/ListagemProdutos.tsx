@@ -1,6 +1,6 @@
-import { Grid } from '@mui/material';
-import { GridCard } from 'components/gridCard/GridCard';
-import { Produto } from 'types/produtos';
+import { Grid } from "@mui/material";
+import { GridCard } from "components/gridCard/GridCard";
+import { Produto } from "types/produtos";
 
 type Props = {
   listaDeProdutos: Produto[];

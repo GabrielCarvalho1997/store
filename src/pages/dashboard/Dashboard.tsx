@@ -1,12 +1,12 @@
-import { Box, Skeleton, Fab } from '@mui/material';
+import { Box, Skeleton, Fab } from "@mui/material";
 
-import { LayoutBaseDePagina } from 'layouts/LayoutBaseDePagina';
-import { ListagemProdutos } from 'pages/produtos/ListagemProdutos';
-import { useState, useCallback, useEffect } from 'react';
-import { Produto } from 'types/produtos';
-import { ProdutosService } from 'services/api/axios-config/produtos/ProdutosService';
-import AddIcon from '@mui/icons-material/Add';
-import { useNavigate, useParams } from 'react-router-dom';
+import { LayoutBaseDePagina } from "layouts/LayoutBaseDePagina";
+import { ListagemProdutos } from "pages/produtos/ListagemProdutos";
+import { useState, useCallback, useEffect } from "react";
+import { Produto } from "types/produtos";
+import { ProdutosService } from "services/api/axios-config/produtos/ProdutosService";
+import AddIcon from "@mui/icons-material/Add";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const Dashboard = () => {
   const [produtos, setProdutos] = useState<Produto[]>([]);
@@ -17,7 +17,7 @@ export const Dashboard = () => {
 
   // Navega até a página de adição
   const handleClick = () => {
-    navigate('/adicao');
+    navigate("/adicao");
   };
 
   // Busca todos os produtos ou por categoria
@@ -74,7 +74,7 @@ export const Dashboard = () => {
 
           <Box
             sx={{
-              position: 'absolute',
+              position: "absolute",
               bottom: 30,
               right: 40,
             }}

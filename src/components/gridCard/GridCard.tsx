@@ -9,11 +9,11 @@ import {
   Icon,
   Button,
   Stack,
-} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { ProdutosService } from 'services/api/axios-config/produtos/ProdutosService';
-import { Produto } from 'types/produtos';
-import { toast } from 'react-toastify';
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { ProdutosService } from "services/api/axios-config/produtos/ProdutosService";
+import { Produto } from "types/produtos";
+import { toast } from "react-toastify";
 type Props = {
   produto: Produto;
 };
@@ -34,9 +34,9 @@ export const GridCard = ({ produto }: Props) => {
         alert(res.message);
       } else {
         console.log(res);
-        toast.success('Produto excluído com sucesso!');
+        toast.success("Produto excluído com sucesso!");
         // Gambiarra para atualizar a lista
-        navigate('/');
+        navigate("/");
       }
     });
   };
@@ -51,7 +51,7 @@ export const GridCard = ({ produto }: Props) => {
               height={250}
               image={produto.image}
               alt={produto.title}
-              style={{ objectFit: 'contain' }}
+              style={{ objectFit: "contain" }}
             />
           </Box>
           <CardContent>
@@ -60,18 +60,18 @@ export const GridCard = ({ produto }: Props) => {
               fontWeight={800}
               maxWidth={300}
               style={{
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis',
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
               }}
             >
               {produto.title}
             </Typography>
 
             <Typography marginY={1}>
-              {produto.price.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
+              {produto.price.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
               })}
             </Typography>
             <Box display="flex" alignItems="center">

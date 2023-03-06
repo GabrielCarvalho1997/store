@@ -1,10 +1,10 @@
-import { Box, TextField, Button, Skeleton, Paper } from '@mui/material';
-import { useCallback, useEffect, useState } from 'react';
-import { ProdutosService } from 'services/api/axios-config/produtos/ProdutosService';
-import { useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Produto } from 'types/produtos';
-import { toast } from 'react-toastify';
+import { Box, TextField, Button, Skeleton, Paper } from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
+import { ProdutosService } from "services/api/axios-config/produtos/ProdutosService";
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { Produto } from "types/produtos";
+import { toast } from "react-toastify";
 
 type FormState = {
   title: string;
@@ -50,7 +50,7 @@ export const EditForm = () => {
 
   const onSubmit = (data: FormState) => {
     const temp: Produto = {
-      id: parseInt(id || '0'),
+      id: parseInt(id || "0"),
       title: data.title,
       category: data.category,
       description: data.description,
@@ -67,8 +67,8 @@ export const EditForm = () => {
           alert(res.message);
         } else {
           console.log(res);
-          toast.success('Produto editado com sucesso!');
-          navigate('/');
+          toast.success("Produto editado com sucesso!");
+          navigate("/");
         }
       });
     }
@@ -94,57 +94,57 @@ export const EditForm = () => {
       ) : (
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            label={'Título'}
+            label={"Título"}
             fullWidth
             sx={{ my: 2 }}
             error={!!errors.title}
             helperText={errors.title?.message}
-            {...register('title', {
-              required: { value: true, message: 'Campo obrigatório' },
+            {...register("title", {
+              required: { value: true, message: "Campo obrigatório" },
             })}
           />
           <TextField
-            label={'Categoria'}
+            label={"Categoria"}
             fullWidth
             sx={{ my: 2 }}
             error={!!errors.category}
             helperText={errors.category?.message}
-            {...register('category', {
-              required: { value: true, message: 'Campo obrigatório' },
+            {...register("category", {
+              required: { value: true, message: "Campo obrigatório" },
             })}
           />
           <TextField
-            label={'Descrição'}
+            label={"Descrição"}
             fullWidth
             sx={{ my: 2 }}
             error={!!errors.description}
             helperText={errors.description?.message}
-            {...register('description', {
-              required: { value: true, message: 'Campo obrigatório' },
+            {...register("description", {
+              required: { value: true, message: "Campo obrigatório" },
             })}
           />
 
           <TextField
-            label={'URL da imagem'}
+            label={"URL da imagem"}
             fullWidth
             sx={{ my: 2 }}
             error={!!errors.image}
             helperText={errors.image?.message}
-            {...register('image', {
-              required: { value: true, message: 'Campo obrigatório' },
+            {...register("image", {
+              required: { value: true, message: "Campo obrigatório" },
             })}
           />
 
           <TextField
-            label={'Preço ( R$ )'}
+            label={"Preço ( R$ )"}
             type="text"
             fullWidth 
             sx={{ my: 2 }}
             error={!!errors.price}
             helperText={errors.price?.message}
             InputLabelProps={{ shrink: true }}
-            {...register('price', {
-              required: { value: true, message: 'Campo obrigatório' },
+            {...register("price", {
+              required: { value: true, message: "Campo obrigatório" },
             })}
           />
           <Button

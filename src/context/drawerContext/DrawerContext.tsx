@@ -1,4 +1,4 @@
-import Loader from 'components/loader/Loader';
+import Loader from "components/loader/Loader";
 import {
   createContext,
   useState,
@@ -6,9 +6,9 @@ import {
   useCallback,
   useContext,
   ReactNode,
-} from 'react';
+} from "react";
 
-import { ProdutosService } from 'services/api/axios-config/produtos/ProdutosService';
+import { ProdutosService } from "services/api/axios-config/produtos/ProdutosService";
 
 interface IDrawerContextData {
   isDrawerOpen: boolean;
@@ -32,15 +32,15 @@ const DrawerContext = createContext({} as IDrawerContextData);
 
 const defaultMenu = [
   {
-    label: 'Página inicial',
-    icon: 'home',
-    path: '/home',
+    label: "Página inicial",
+    icon: "home",
+    path: "/home",
     subMenu: false
   },
   {
-    label: 'Categorias',
-    icon: 'menu',
-    path: '/',
+    label: "Categorias",
+    icon: "menu",
+    path: "/",
     subMenu: false
   },
 ];
@@ -62,7 +62,7 @@ export const DrawerProvider = ({ children }: Props) => {
         if (res instanceof Error) {
           alert(res.message);
         } else {
-          const icones = ['laptop','diamond','man','woman'];
+          const icones = ["laptop","diamond","man","woman"];
           
           // Associa o ícone a cada categoria
           const menuIcones: any = res.reduce((obj: any, category, index) => {
