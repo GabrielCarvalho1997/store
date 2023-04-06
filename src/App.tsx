@@ -8,8 +8,6 @@ import AuthProvider from "context/authContext/AuthContext";
 import ConfigProvider from "context/ConfigContext/ConfigContext";
 
 function App() {
-  
-
   return (
     <AppThemeProvider>
       <DrawerProvider>

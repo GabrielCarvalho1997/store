@@ -108,8 +108,6 @@ const deleteById = async (id: number): Promise<void | Error> => {
   }
 };
 
-// Outra maneira
-
 export const ProdutosService = {
   getAll,
   getAllCategories,

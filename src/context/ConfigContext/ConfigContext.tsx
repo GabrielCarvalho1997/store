@@ -1,36 +1,32 @@
-import {createContext, ReactNode, useContext, useState} from "react";
-
+import { createContext, ReactNode, useContext, useState } from "react";
 
 type Props = {
-    children: ReactNode;
-}
+  children: ReactNode;
+};
 
 export type ConfigContext = {
-    menuAtivo: string;
-    setMenuAtivo: (menu:string) => void;
-    openMenu: boolean;
-    setOpenMenu: (openMenu: boolean) => void;
-    loading: boolean;
-    setLoading: (loading: boolean) => void;
-}
+  menuAtivo: string;
+  setMenuAtivo: (menu: string) => void;
+  openMenu: boolean;
+  setOpenMenu: (openMenu: boolean) => void;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+};
 
 const ConfigContextType = createContext<ConfigContext>({} as ConfigContext);
 
-
-const ConfigProvider = ({children}: Props) => {
+const ConfigProvider = ({ children }: Props) => {
   const [menuAtivo, setMenuAtivo] = useState("");
   const [openMenu, setOpenMenu] = useState(true);
   const [loading, setLoading] = useState(false);
 
-
-
   const provider = {
-    menuAtivo:      menuAtivo,
-    setMenuAtivo:   setMenuAtivo,
-    openMenu:       openMenu,
-    setOpenMenu:    setOpenMenu,
-    loading:        loading,
-    setLoading:     setLoading
+    menuAtivo: menuAtivo,
+    setMenuAtivo: setMenuAtivo,
+    openMenu: openMenu,
+    setOpenMenu: setOpenMenu,
+    loading: loading,
+    setLoading: setLoading,
   };
 
   return (

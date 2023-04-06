@@ -23,9 +23,9 @@ export const LayoutBaseDePagina = ({ children, titulo }: Props) => {
   const match2 = useMatch({ path: "adicao", end: true });
 
   const location = useLocation();
-  const {isAuthenticated} = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  if(!isAuthenticated){
+  if (!isAuthenticated) {
     return <Navigate to={"/login"} state={{ from: location }} replace />;
   }
 
@@ -41,10 +41,9 @@ export const LayoutBaseDePagina = ({ children, titulo }: Props) => {
           padding={1}
           display="flex"
           alignItems="center"
-          justifyContent='center'
+          justifyContent="center"
           gap={1}
           height={theme.spacing(sm ? 6 : md ? 8 : 12)}
-        
         >
           <Typography
             variant={sm ? "h5" : md ? "h4" : "h3"}

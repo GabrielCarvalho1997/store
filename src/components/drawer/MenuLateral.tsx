@@ -9,17 +9,16 @@ import {
   ListItemText,
   useMediaQuery,
   useTheme,
-  Collapse
+  Collapse,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import Icon from "@mui/material/Icon";
-import {ExpandLess, ExpandMore } from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import ListIcon from "@mui/icons-material/List";
 import HomeIcon from "@mui/icons-material/Home";
 import { useDrawerContext } from "context/drawerContext/DrawerContext";
 import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 import { BtnTheme } from "components/btnTema/BtnTheme";
-
 
 type Props = {
   children: ReactNode;
@@ -68,8 +67,6 @@ export const MenuLateral = ({ children }: Props) => {
     setOpen(!open);
   };
 
-  
-
   return (
     <>
       <Drawer
@@ -106,15 +103,14 @@ export const MenuLateral = ({ children }: Props) => {
           <Divider />
 
           <Box flex={1}>
-
             {/* Item de página inicial */}
-            <ListItemButton onClick= {() => navigate("/home")} >
+            <ListItemButton onClick={() => navigate("/home")}>
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Página Inicial" />
             </ListItemButton>
-            
+
             {/* Item de categorias com as categorias dinâmicas */}
             <ListItemButton onClick={handleToggle}>
               <ListItemIcon>
@@ -123,10 +119,15 @@ export const MenuLateral = ({ children }: Props) => {
               <ListItemText primary="Categoria" />
               {open ? <ExpandMore /> : <ExpandLess />}
             </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit sx={{background: "#DCDCDC", }}>
+            <Collapse
+              in={open}
+              timeout="auto"
+              unmountOnExit
+              sx={{ background: "#DCDCDC" }}
+            >
               <List component="div" disablePadding>
-                { drawerOptions && drawerOptions.map((Options) => 
-                  (
+                {drawerOptions &&
+                  drawerOptions.map((Options) => (
                     <ListItemLink
                       key={Options.path}
                       label={Options.label}
@@ -134,9 +135,7 @@ export const MenuLateral = ({ children }: Props) => {
                       to={Options.path}
                       onClick={smDown ? toggleDrawerOpen : undefined}
                     />
-                    
-                  ))
-                }
+                  ))}
               </List>
             </Collapse>
           </Box>
