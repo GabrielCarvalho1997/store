@@ -67,7 +67,6 @@ export const GridCard = ({ produto }: Props) => {
             >
               {produto.title}
             </Typography>
-
             <Typography marginY={1}>
               {produto.price.toLocaleString("pt-BR", {
                 style: "currency",
